@@ -3,14 +3,14 @@ import pandas as pd
 import datetime
 import random
 
-app = Flask(__name__)
-app.secret_key = '10928482048'
+application = Flask(__name__)
+application.secret_key = '10928482048'
 
-@app.route('/', methods=['GET'])
+@application.route('/', methods=['GET'])
 def start():
     return render_template("start.html")
 
-@app.route('/', methods=['POST'])
+@application.route('/', methods=['POST'])
 def post_id():
     lancers_id = request.form.get("value1")
     session.permanent = False
@@ -20,7 +20,7 @@ def post_id():
     else:
         return redirect(url_for('form'))
 
-@app.route('/form', methods=['GET'])
+@application.route('/form', methods=['GET'])
 def form():
     review_data = []
     sample_review_index = []
@@ -32,7 +32,7 @@ def form():
         review_data.append(df["review"][i])
     return render_template("index.html", sample_review=sample_review, review_data=review_data, sample_review_index=sample_review_index)
 
-@app.route('/show', methods=['POST'])
+@application.route('/show', methods=['POST'])
 def show():
     df = pd.read_csv("./static/data/review_form.csv", header=None, names=["review"])
     review_id = []
@@ -62,6 +62,7 @@ def show():
         exist.append(exist_value)
 
     reviews = []
+    print(exist[0])
     try:
         for id in review_id:
             reviews.append(df["review"][int(id)])
@@ -91,6 +92,7 @@ def show():
             f.write("\n")
     return render_template("show.html", token=f_name)
 
+
 if __name__ == '__main__':
-    app.debug = True
-    app.run(host='localhost')
+    application.debug = True
+    application.run()
