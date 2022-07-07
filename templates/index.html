@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+
+{% block title %}index{% endblock %}
+
+{% block content %}
+<div id="app">
+    <h2>回答例</h2>
+    <div class="example form">
+        <div class="form-left">
+            <div class="review_sentence">
+                <span style=color:crimson;>海外旅行で使用する為購入。</span>季節的に店舗ではあまり売ってないので助かりました。身長、普段Ｌサイズで、
+                産後太りで二の腕、お腹周りがかなりポッチャリですが、Ｌサイズでちょうどでした。デザインがシンプルで色もバリエーションが
+                あって、しかもこのお値段！イエローとボーダーで迷いましたが、お安いので両方買っちゃいました（笑）イエローは蛍光色では無いの
+                で派手過ぎず、落ち着いてるけど明るい色で好みでしたし、ボーダーもとても可愛いく気に入りました。どちらも膨張色ですが、
+                型がキレイでスッキリして見えるので着太りせず、海辺では暗い色より爽やかで映えます。旅先では白のパーカーを着てる方が多かったの
+                でかぶらず、代後半の私でも大丈夫な色でした（笑）<span style=color:crimson;>リゾートで日焼け対策で街着にも使用しましたが、服にも合わせやすく違和感なし。</span>
+                着心地も、肌が弱いので普段は化学繊維の物はほとんど着ないのですが、こちらはサラッとテロッとしていて冷んやり気持ち良いです。
+                番ポイント高かったのはダブルジップ！ウェスト周りが好みのサイズ感に調節できるので、太めでもキレイに着られます。
+                かなりコスパが良い商品だと思います。子供が小さいので、<span style=color:crimson;>外遊びや海やプールに行く機会が多く、日焼け出来ない私には夏に向けて
+                大活躍間違いなしです！</span>オススメです！
+                <div><br><strong>※一つも目的がない場合は、変更ボタンを押してください</strong></div>
+            </div>
+        </div>
+        <div class="form-right">
+            <div class="form1, form-content">
+                <div class="label-set">
+                    <label for="example1-1" class="label">該当部分</label>
+                    <textarea id="example1-1" class="input-left" readonly>海外旅行で使用する為購入。</textarea>
+                </div>
+                <div class="label-set">
+                    <label for="example1-2" class="label">目的</label>
+                    <textarea id="example1-2" readonly>海外旅行に使う</textarea>
+                </div>
+            </div>
+            <div class="form2, form-content">
+                <div class="label-set">
+                    <label for="example2-1" class="label">該当部分</label>
+                    <textarea id="example2-1" class="input-left" readonly>リゾートで日焼け対策で街着にも使用しましたが、服にも合わせやすく違和感なし。</textarea>
+                </div>
+                <div class="label-set">
+                    <label for="example2-2" class="label">目的</label>
+                    <textarea id="example2-2" readonly>日焼け対策に使用</textarea>
+                </div>
+            </div>
+            <div class="form3, form-content">
+                <div class="label-set">
+                    <label for="example3-1" class="label">該当部分</label>
+                    <textarea id="example3-1" class="input-left" readonly>外遊びや海やプールに行く機会が多く、日焼けできない私には夏に向けて大活躍間違いなしです！</textarea>
+                </div>
+                <div class="label-set">
+                    <label for="example3-2" class="label">目的</label>
+                    <textarea id="example3-2" readonly>外、海、プールで使用</textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <form action="/show" method="POST" enctype="multipart/form-data">
+        {% for s in sample_review %}
+        <h2>{{loop.index}}</h2>
+        <button v-on:click="ChangeReview" type="button" id="button-{{loop.index0}}">文章の変更</button>
+        <div class="form">
+            <div class="form-left">
+                <div class="review_sentence" id="sentence-{{loop.index0}}">
+                    {{s}}
+                </div>
+                <input type="hidden" v-model="sample_review_index[{{loop.index0}}]" name="review_index-{{loop.index0}}">
+            </div>
+            <div class="form-right">
+                <div class="form1, form-content">
+                    <div class="label-set">
+                        <label for="part1-{{loop.index0}}" class="label">該当部分</label>
+                        <textarea name="part1-{{loop.index0}}" class="input-left" id="part1-{{loop.index0}}"></textarea>
+                    </div>
+                    <div class="label-set">
+                        <label for="practice1-{{loop.index0}}">目的</label>
+                        <textarea  name="purpose1-{{loop.index0}}" class="input-right" id="purpose1-{{loop.index0}}"></textarea>
+                    </div>
+                </div>
+                <div class="form2, form-content">
+                    <div class="label-set">
+                        <label for="part2-{{loop.index0}}" class="label">該当部分</label>
+                        <textarea name="part2-{{loop.index0}}" class="input-left" id="part2-{{loop.index0}}"></textarea>
+                    </div>
+                    <div class="label-set">
+                        <label for="practice2-{{loop.index0}}">目的</label>
+                        <textarea name="purpose2-{{loop.index0}}" class="input-right" id="purpose2-{{loop.index0}}"></textarea>
+                    </div>
+                </div>
+                <div class="form3, form-content">
+                    <div class="label-set">
+                        <label for="part3-{{loop.index0}}" class="label">該当部分</label>
+                        <textarea name="part3-{{loop.index0}}" class="input-left" id="part3-{{loop.index0}}"></textarea>
+                    </div>
+                    <div class="label-set">
+                        <label for="practice3-{{loop.index0}}">目的</label>
+                        <textarea name="purpose3-{{loop.index0}}" class="input-right" id="purpose3-{{loop.index0}}"></textarea>
+                    </div>
+                </div>
+                <label for="is_exist-{{loop.index0}}">3回変更して目的がない場合はここをチェックしてください</label>
+            <input type="checkbox" name="is_exist-{{loop.index0}}" value="1" id="is_exist-{{loop.index0}}"> 
+            </div>
+        </div>
+        <hr>
+        {% endfor %}
+        <input type="submit" value="送信">
+    </form>
+</div>
+<script>
+    const review_data = {{review_data | tojson}};
+    const sample_review_index = {{sample_review_index}};
+    const app = new Vue({
+        el: '#app',
+        data: {
+            review: review_data,
+            sample_review_index: sample_review_index,
+        },
+        methods: {
+            // ランダムに数値を取得 ただし表示されている以外のインデックスのみとする
+            RandReview(review_data, id){
+                let rand = this.sample_review_index[0]
+                while (sample_review_index.indexOf(rand) !== -1){
+                    rand = Math.random()*review_data.length | 0;
+                }
+                this.$set(this.sample_review_index, id, rand)
+                const rValue = review_data[rand];
+                return rValue;
+            },
+            // レビュー文の変更
+            ChangeReview(e){
+                const id = String(e.currentTarget.id).replace(/[^0-9]/g, "");
+                new_review = this.RandReview(this.review, Number(id));
+                const text = document.getElementById("sentence-" + id);
+                text.innerHTML = new_review;
+            },
+        },
+        delimiters: ['[[', ']]']
+    })
+</script>
+{% endblock %}

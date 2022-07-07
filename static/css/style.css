@@ -1,0 +1,36 @@
+textarea {
+    width: 37vw;
+    height: 5vh;
+    font-size: 1.3em;
+    resize: none;
+}
+.wrapper {
+    display: block;
+    margin: 0 100px;
+}
+.form {
+    display: flex;
+    flex-direction: column;
+}
+.form-left {
+    width: 80vw;
+    box-sizing: border-box;
+}
+.form-right {
+    margin-left: 1em;
+    padding: 5px 5px;
+    width: 80vw;
+    box-sizing: border-box;
+}
+.form-content {
+    display: flex;
+    flex-direction: row;
+    padding: 5px 5px;
+}
+.label-set {
+    display: flex;
+    flex-direction: column;
+}
+.input-left {
+    margin-right: 5px;
+}
