@@ -62,7 +62,6 @@ def show():
         exist.append(exist_value)
 
     reviews = []
-    print(exist[0])
     try:
         for id in review_id:
             reviews.append(df["review"][int(id)])
@@ -91,7 +90,6 @@ def show():
                         f.write(f',{purpose3[i]}')
             f.write("\n")
     return render_template("show.html", token=f_name)
-
 
 if __name__ == '__main__':
     app.debug = True
